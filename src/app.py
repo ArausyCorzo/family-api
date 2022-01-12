@@ -49,13 +49,22 @@ def add_new_member():
     else: 
         return jsonify({"message": "Ups, it is nothing here"}), 500  
 
-@app.route('/member/<int:member_id>', methods=['GET'])
-def handle_delete(members_id):
-    member= jackson_family.get_all_members(members_id)
-    if member_id is not None:
-        return jsonify(member), 200
+@app.route('/member/<int:member_id>', methods=['GET', 'DELETE'])
+def handle_members(member_id):
+    if request.method == 'GET':
+        member= jackson_family.get_member(member_id)
+        if member_id is not None:
+            return jsonify(member), 200
     else:
-        return jsonify({"message": "Ups, it is nothing here"}), 500      
+        return jsonify({"message": "Ups D:, it is nothing here"}), 500
+
+    if request.method == 'DELETE':
+        member = jackson_family.delete_member(member_id)
+        if member:
+            return ({"done": True}), 200
+        else:
+            return ({"message": "Ups D:, try again"}), 500    
+
 
 
 # this only runs if `$ python src/app.py` is executed
