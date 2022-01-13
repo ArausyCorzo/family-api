@@ -61,9 +61,9 @@ def handle_members(member_id):
     if request.method == 'DELETE':
         member = jackson_family.delete_member(member_id)
         if member:
-            return ({"done": True}), 200
+            return jsonify({"done": True}), 200
         else:
-            return ({"message": "Ups D:, try again"}), 500    
+            return jsonify({"message": "Ups D:, try again"}), 500    
 
 
 

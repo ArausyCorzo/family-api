@@ -34,7 +34,6 @@ class FamilyStructure:
     def delete_member(self, id):
         # fill this method and update the return
         self._members = list(filter(lambda member: member["id"] != id, self._members))
-
         return True
 
     def get_member(self, id):
