@@ -55,10 +55,7 @@ def handle_members(member_id):
         member= jackson_family.get_member(member_id)
         if member_id is not None:
             return jsonify(member), 200
-    else:
-        return jsonify({"message": "Ups D:, it is nothing here"}), 500
-
-    if request.method == 'DELETE':
+    elif request.method == 'DELETE':
         member = jackson_family.delete_member(member_id)
         if member:
             return jsonify({"done": True}), 200
